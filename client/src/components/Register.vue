@@ -2,23 +2,26 @@
   <v-layout column>
     <v-flex xs6 offset-xs3>
       <div class="white elevation-2">
-        <v-toolbar flat dense class="light-green" dark>
+        <v-toolbar flat dense class="light-green">
           <v-toolbar-title>Register</v-toolbar-title>
         </v-toolbar>
       <div class="pl-4 pr-4 pt-2 pb-2">
-        <input
-          type="email"
-          name="email"
-          placeholder="email"
-          v-model="email"
-          />
+        <v-text-field
+          label="E-mail"
+          v-model="email">
+        </v-text-field>
           <br>
-        <input
-          type="password"
-          name="password"
-          v-model="password"
-          placeholder="password"
-          />
+          <v-text-field
+               name="input-10-1"
+               label="Password"
+               hint="At least 8 characters"
+               v-model="password"
+               min="8"
+               :append-icon="e1 ? 'on' : 'off'"
+               :append-icon-cb="() => (e1 = !e1)"
+               :type="e1 ? 'password' : 'text'"
+               counter
+             ></v-text-field>
         <br>
         <div class="error" v-html="error" />
         <br>
@@ -38,8 +41,9 @@ import AuthenticationService from '@/services/AuthenticationService' // This is 
 export default {
   data () {
     return {
-      email: '',
+      e1: false,
       password: '',
+      email: '',
       error: null
     }
   },
