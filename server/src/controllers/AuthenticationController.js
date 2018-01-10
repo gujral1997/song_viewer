@@ -34,7 +34,7 @@ module.exports = {
         })
       }
 
-      const isPasswordValid = password === user.password
+      const isPasswordValid = await user.comparePassword(password) // Await used as we are going to return promise
       console.log(password, user.password)
       console.log(isPasswordValid)
       if (!isPasswordValid) {
