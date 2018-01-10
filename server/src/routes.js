@@ -6,8 +6,6 @@ module.exports = (app) => {
   app.post('/register',
     AuthenticationControllerPolicy.register,
     AuthenticationController.register)
-}
-module.exports = (app) => {
   app.post('/login',
     AuthenticationController.login) // Policy not needed here as login
 }
