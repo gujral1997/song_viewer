@@ -11,7 +11,7 @@ function hashPassword (user, options) {
     .genSaltAsync(SALT_FACTOR)
     .then(salt => bcrypt.hashAsync(user.password, salt, null))
     .then(hash => {
-      user.setDataValue('password, hash')
+      user.setDataValue('password', hash)
     })
 }
 
