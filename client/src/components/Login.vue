@@ -50,10 +50,14 @@ export default {
   methods: {
     async login () {
       try {
-        await AuthenticationService.login({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         })
+        // const token = response.data.token
+        // console.log(token)
+        this.$store.dispatch('setToken', response.data.token) // Will call stores setToken method which will further call mutation setToken which eill update the state to token
+        this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.error = error.response.data.error
       }
@@ -61,6 +65,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .error {
   color: red;

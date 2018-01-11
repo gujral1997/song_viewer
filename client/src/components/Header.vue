@@ -11,11 +11,15 @@
 
             <v-toolbar-items>
                   <!--router-link to="register"--> <!--Look through register in index.js-->
-                        <v-btn flat dark
+                        <v-btn
+                        v-if="$store.state.isUserLoggedIn"
+                        flat dark
                         @click="navigateTo({name: 'login'})">
                               Login
                         </v-btn>
-                        <v-btn flat dark
+                        <v-btn
+                        v-if="$store.state.isUserLoggedIn"
+                        flat dark
                         @click="navigateTo({name: 'register'})">
                               Sign Up
                         </v-btn>
