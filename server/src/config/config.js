@@ -11,6 +11,6 @@ module.exports = {
     }
   },
   authentication: {
-    jwtSecret: process.env.JWT_SECRET || 'secret'
+    jwtSecret: process.env.JWT_SECRET || 'secret' // Here secret is only nown by the server and it will check jwt token is valid or not
   }
 }
