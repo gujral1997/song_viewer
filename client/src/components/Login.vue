@@ -7,12 +7,14 @@
         </v-toolbar>
       <div class="pl-4 pr-4 pt-2 pb-2">
         <v-text-field
+        autocomplete="new-email"
           label="E-mail"
           v-model="email">
         </v-text-field>
           <br>
           <v-text-field
                name="input-10-1"
+               autocomplete="new-password"
                label="Password"
                hint="At least 8 characters"
                v-model="password"
