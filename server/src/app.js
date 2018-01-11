@@ -8,12 +8,12 @@ const config = require('./config/config')
 const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
-app.use(cors()) // used to host server on different domains
+app.use(cors())
 
-require('./routes')(app) // calls app from routes.js
+require('./routes')(app)
 
-sequelize.sync({force: true}) // force true used as password was reading only 6 characters
+sequelize.sync()
   .then(() => {
-    app.listen(config.port) // To overwrite that port using enviorment variable
+    app.listen(config.port)
     console.log(`Server started on port ${config.port}`)
   })
