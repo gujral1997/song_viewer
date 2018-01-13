@@ -12,7 +12,7 @@ app.use(cors()) // used to host server on different domains
 
 require('./routes')(app) // calls app from routes.js
 
-sequelize.sync({force: true}) // force true used as password was reading only 6 characters
+sequelize.sync({force: false}) // force true used as password was reading only 6 characters
   .then(() => {
     app.listen(config.port) // To overwrite that port using enviorment variable
     console.log(`Server started on port ${config.port}`)
