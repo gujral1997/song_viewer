@@ -4,10 +4,7 @@
       <v-toolbar-title>{{title}}</v-toolbar-title> <!-- {{}} stands for binding -->
     </v-toolbar>
   <div class="pl-4 pr-4 pt-2 pb-2">
-    <slot name="hello">
-      No slot Content defined
-    </slot>
-    <slot name ="bye">
+    <slot>
       No slot Content defined
     </slot>
   </div>
@@ -17,11 +14,9 @@
 <script>
 // import AuthenticationService from
 export default {
-  data () {
-    return {
-      title: 'hello world'
-    }
-  }
+  props: [
+    'title' // Will go to {{title}} and it is defined as songs in songs.vue
+  ]
 }
 </script>
 
