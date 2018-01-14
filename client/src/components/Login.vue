@@ -14,7 +14,7 @@
                hint="At least 8 characters"
                v-model="password"
                min="8"
-               :append-icon="e1 ? 'on' : 'off'"
+               :append-icon="e1 ? 'visibility' : 'visibility_off'"
                :append-icon-cb="() => (e1 = !e1)"
                :type="e1 ? 'password' : 'text'"
                counter

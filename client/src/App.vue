@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-        <page-header />
-    <!-- img src="./assets/logo.png"-->
-    <router-view/>
+    <v-app>
+      <page-header />
+
+      <main>
+        <v-container fluid>
+          <router-view></router-view>
+        </v-container>
+      </main>
+    </v-app>
   </div>
 </template>
 
 <script>
 import PageHeader from '@/components/Header.vue'
+
 export default {
   name: 'app',
   components: {
@@ -25,10 +32,14 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.danger-alert {
+  color: red;
+}
 .toolbar__title{
   color: white;
   }
 .btn__content{
-  color: white;
+  color: black;
   }
 </style>
