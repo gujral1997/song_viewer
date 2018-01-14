@@ -5,7 +5,7 @@
         <v-btn
           slot="action"
           @click="navigateTo({name: 'songs-create'})"
-          class="cyan accent-2"
+          class="green"
           light
           medium
           absolute
@@ -41,6 +41,11 @@ export default {
   async mounted () { // if not async, mount wont work
     // do request to the backend for all the Songs
     this.songs = (await SongsService.index()).data // It will send data in panel
+  },
+  methods: {
+    navigateTo (route) {
+      this.$router.push(route)
+    }
   }
 }
 </script>

@@ -40,6 +40,6 @@ export default {
   color: white;
   }
 .btn__content{
-  color: black;
+  color: white;
   }
 </style>

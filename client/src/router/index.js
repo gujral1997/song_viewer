@@ -32,8 +32,8 @@ export default new Router({
       component: Songs
     },
     {
-      path: '/songs/create',
-      name: 'songs/create',
+      path: '/songs-create',
+      name: 'songs-create',
       component: CreateSongs
     }
   ]
