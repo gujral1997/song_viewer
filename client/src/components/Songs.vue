@@ -17,9 +17,28 @@
         <div
         v-for="song in songs"
         :key="song.id">
-          {{song.title}}
-          {{song.artist}}
-          {{song.album}}
+        <v-layout>
+          <v-flex xs6>
+            <div class="song-title">
+              {{song.title}}
+            </div>
+            <div class="song-artist">
+              {{song.artist}}
+            </div>
+            <div class="song-genre">
+              {{song.genre}}
+            </div>
+          </v-flex>
+          <v-flex xs6>
+            <img class="album-image" :src="song.albumImageUrl" />
+            <div class="song-artist">
+              {{song.artist}}
+            </div>
+            <div class="song-album">
+              {{song.album}}
+            </div>
+          </v-flex>
+        </v-layout>
         </div>
       </panel>
     </v-flex>
@@ -51,5 +70,17 @@ export default {
 </script>
 
 <style scoped>
-
+.album-image {
+  width :70%;
+  margin:0 auto
+}
+.song-title {
+  font-size: 30px;
+}
+.song-genre {
+  font-size: 24px;
+}
+.song-artist {
+  font-size: 18px;
+}
 </style>

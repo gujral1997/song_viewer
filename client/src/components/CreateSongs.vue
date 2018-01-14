@@ -5,43 +5,49 @@
         <v-text-field
           label="Title"
           required
-          :rules="[rules.required]"
+          :rules="[required]"
           v-model="song.title">
         </v-text-field>
 
         <v-text-field
           label="Artist"
           required
+          :rules="[required]"
           v-model="song.artist">
         </v-text-field>
 
         <v-text-field
           label="Type"
           required
+          :rules="[required]"
           v-model="song.type">
         </v-text-field>
 
         <v-text-field
           label="Genre"
           required
+          :rules="[required]"
           v-model="song.genre">
         </v-text-field>
 
         <v-text-field
           label="Album"
           required
+          :rules="[required]"
           v-model="song.album">
         </v-text-field>
 
         <v-text-field
           required
           label="AlbumImageURL"
+          :rules="[required]"
           v-model="song.albumImageUrl">
         </v-text-field>
 
         <v-text-field
           required
           label="YoutubeId"
+          :rules="[required]"
           v-model="song.youtubeId">
         </v-text-field>
 
@@ -54,6 +60,7 @@
           required
           label="Lyrics"
           multi-line
+          :rules="[required]"
           v-model="song.lyrics">
         </v-text-field>
 
@@ -61,9 +68,13 @@
           required
           label="Tab"
           multi-line
+          :rules="[required]"
           v-model="song.tab">
         </v-text-field>
       </panel>
+      <div class="danger-alert" v-if="error">
+        {{error}}
+      </div>
       <v-btn
         class="light-green"
         @click="create">
@@ -89,9 +100,8 @@ export default {
         lyrics: null,
         tab: null
       },
-      rules: {
-        required: (value) => !!value || 'Required.'
-      }
+      error: null,
+      required: (value) => !!value || 'Required.'
     }
   },
   components: {
@@ -99,6 +109,14 @@ export default {
   },
   methods: {
     async create () {
+      this.error = null
+      const areAllFieldsFilledIn = Object
+      .keys(this.song)
+      .every(key => !!this.song[key])
+      if (!areAllFieldsFilledIn) {
+        this.error = 'Please Fill in all the Required Fields.'
+        return
+      }
       // call Api
       try {
         await SongsService.post(this.song)
