@@ -16,6 +16,7 @@
         </v-btn>
         <div
         v-for="song in songs"
+        class="song"
         :key="song.id">
         <v-layout>
           <v-flex xs6>
@@ -28,15 +29,14 @@
             <div class="song-genre">
               {{song.genre}}
             </div>
+            <v-btn
+              class="light-green"
+              @click="navigateTo({name: 'song', params: {songId: song.id}})">
+              View
+            </v-btn>
           </v-flex>
           <v-flex xs6>
             <img class="album-image" :src="song.albumImageUrl" />
-            <div class="song-artist">
-              {{song.artist}}
-            </div>
-            <div class="song-album">
-              {{song.album}}
-            </div>
           </v-flex>
         </v-layout>
         </div>
@@ -70,6 +70,11 @@ export default {
 </script>
 
 <style scoped>
+.song {
+  padding: 20px;
+  height: 330px;
+  overflow: hidden;
+}
 .album-image {
   width :70%;
   margin:0 auto
