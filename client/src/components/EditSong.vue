@@ -70,8 +70,8 @@
       </div>
       <v-btn
         class="light-green"
-        @click="create">
-        Create a Song
+        @click="save">
+        Save a Song
       </v-btn>
     </v-flex>
   </v-layout>
@@ -86,6 +86,7 @@ export default {
       song: {
         title: null,
         artist: null,
+        type: null,
         genre: null,
         album: null,
         albumImageUrl: null,
@@ -101,7 +102,7 @@ export default {
     Panel
   },
   methods: {
-    async create () {
+    async save () {
       this.error = null
       const areAllFieldsFilledIn = Object
       .keys(this.song)
@@ -110,15 +111,28 @@ export default {
         this.error = 'Please Fill in all the Required Fields.'
         return
       }
-      // call Api
+      const songId = this.$store.state.route.params.songId
+
       try {
-        await SongsService.post(this.song)
+        await SongsService.put(this.song)
         this.$router.push({
-          name: 'songs'
+          name: 'song',
+          params: {
+            songId: songId
+          }
         })
       } catch (err) {
         console.log(err)
       }
+    }
+  },
+  async mounted () {
+    try {
+      const songId = this.$store.state.route.params.songId
+      this.song = (await SongsService.show(songId)).data
+      await SongsService.post(this.song)
+    } catch (err) {
+      console.log(err)
     }
   }
 }
