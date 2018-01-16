@@ -1,9 +1,10 @@
 <template>
-  <panel title="Lyrics">
+  <panel title="Tab">
     <textarea
     readonly
-    v-model="song.lyrics"
-    ></textarea>
+    v-model="song.tab"
+    >
+    </textarea>
   </panel>
 </template>
 
@@ -22,7 +23,7 @@ export default {
 <style scoped>
 textarea {
   width: 100%;
-  font-family: monospace;
+  font-family: monospace;;
   border: none;
   height: 600px;
   border-style: none;

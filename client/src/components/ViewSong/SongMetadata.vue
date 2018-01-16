@@ -11,6 +11,12 @@
         <div class="song-genre">
           {{song.genre}}
         </div>
+        <v-btn
+          dark
+          class="light-green"
+          @click="navigateTo({name: 'song-edit', params: {songId: song.id}})">
+          Edit
+        </v-btn>
       </v-flex>
       <v-flex xs6>
         <img class="album-image" :src="song.albumImageUrl" />
