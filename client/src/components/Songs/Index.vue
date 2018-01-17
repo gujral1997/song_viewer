@@ -2,7 +2,7 @@
   <v-layout column>
     <v-flex xs6 offset-xs3>
       <songs-search-panel />
-      <songs-panel />
+      <songs-panel class="mt-3"/>
     </v-flex>
   </v-layout>
 </template>
@@ -13,7 +13,7 @@ import SongsPanel from './SongsPanel'
 import SongsSearchPanel from './SongsSearchPanel'
 export default {
   components: {
-    //Panel, // my panel then <my-panel /> instead of <panel />
+    // Panel, // my panel then <my-panel /> instead of <panel />
     SongsPanel,
     SongsSearchPanel
   },
