@@ -1,6 +1,5 @@
 <template>
   <v-layout column>
-    <v-flex xs11 offset-xs1>
       <panel title="Songs">
         <v-btn
           slot="action"
@@ -41,7 +40,6 @@
         </v-layout>
         </div>
       </panel>
-    </v-flex>
   </v-layout>
 </template>
 
