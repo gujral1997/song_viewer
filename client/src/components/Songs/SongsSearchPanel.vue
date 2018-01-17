@@ -27,6 +27,12 @@ export default {
         }
       }
       this.$router.push(route)
+    },
+    '$route.query.search': {
+      immediate: true,
+      handler (value) {
+        this.search = value
+      }
     }
   }
 }
