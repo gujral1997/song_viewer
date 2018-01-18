@@ -10,10 +10,11 @@
                   Header
             </router-link>
             <v-btn
-            flat
-            dark
-            @click="navigateTo({name: 'songs'})">
-                  Browse
+              flat
+              dark
+              :to="{name: 'songs'
+              }">
+                Browse
             </v-btn>
             </v-toolbar-title>
             <v-spacer></v-spacer>
@@ -21,18 +22,17 @@
             <v-toolbar-items>
               <!--router-link to="register"--> <!--Look through register in index.js-->
               <v-btn
-              <v-btn
               v-if="!$store.state.isUserLoggedIn"
               flat
               dark
-              @click="navigateTo({name: 'login'})">
+              :to="{name: 'login'}">
                     Login
               </v-btn>
               <v-btn
               v-if="!$store.state.isUserLoggedIn"
               flat
               dark
-              @click="navigateTo({name: 'register'})">
+              :to="{name: 'register'}">
                     Sign Up
               </v-btn>
               <v-btn
@@ -50,9 +50,6 @@
 <script>
 export default {
   methods: {
-    navigateTo (route) {
-      this.$router.push(route)
-    },
     logout () {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)

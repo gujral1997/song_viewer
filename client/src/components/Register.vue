@@ -24,7 +24,7 @@
              ></v-text-field>
         </form>
         <br>
-        <div class="error" v-html="error" />
+        <div class="danger-alert" v-html="error" />
         <br>
         <v-btn
           class="light-green"
@@ -76,7 +76,4 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.error {
-  color: white;
-}
 </style>

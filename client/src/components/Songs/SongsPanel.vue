@@ -3,7 +3,7 @@
       <panel title="Songs">
         <v-btn
           slot="action"
-          @click="navigateTo({name: 'songs-create'})"
+          :to="{name: 'songs-create'}"
           class="green"
           light
           medium
@@ -30,7 +30,7 @@
             </div>
             <v-btn
               class="light-green"
-              :to="({name: 'song', params: {songId: song.id}})">
+              :to="{name: 'song', params: {songId: song.id}}">
               View
             </v-btn>
           </v-flex>
@@ -58,11 +58,6 @@ export default {
     // do request to the backend for all the Songs
     this.songs = (await SongsService.index()).data // It will send data in panel
   }, */
-  methods: {
-    navigateTo (route) {
-      this.$router.push(route)
-    }
-  },
   watch: {
     '$route.query.search': {
       immediate: true,

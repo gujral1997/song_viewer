@@ -20,7 +20,7 @@
                counter
              ></v-text-field>
         <br>
-        <div class="error" v-html="error" />
+        <div class="danger-alert" v-html="error" />
         <br>
         <v-btn
           class="light-green"
@@ -63,7 +63,4 @@ export default {
 </script>
 
 <style scoped>
-.error {
-  color: white;
-}
 </style>
