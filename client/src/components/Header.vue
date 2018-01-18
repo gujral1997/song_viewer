@@ -1,22 +1,25 @@
 <template>
       <v-toolbar fixed class="light-green" >
             <v-toolbar-title class="mr-4">
-                  <span
+                  <router-link
                   class="home"
-                  @click="navigateTo({name: 'root'})">
+                  tag="span"
+                  :to="{
+                  name: 'root'
+                  }"> <!-- Alternative of navigateTo -->
                   Header
-            </span>
+            </router-link>
+            <v-btn
+            flat
+            dark
+            @click="navigateTo({name: 'songs'})">
+                  Browse
+            </v-btn>
             </v-toolbar-title>
             <v-spacer></v-spacer>
 
             <v-toolbar-items>
               <!--router-link to="register"--> <!--Look through register in index.js-->
-              <v-btn
-              flat
-              dark
-              @click="navigateTo({name: 'songs'})">
-                    Browse
-              </v-btn>
               <v-btn
               <v-btn
               v-if="!$store.state.isUserLoggedIn"
