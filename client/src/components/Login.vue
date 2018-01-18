@@ -54,6 +54,9 @@ export default {
         // console.log(token)
         this.$store.dispatch('setToken', response.data.token) // Will call stores setToken method which will further call mutation setToken which eill update the state to token
         this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'songs'
+        })
       } catch (error) {
         this.error = error.response.data.error
       }

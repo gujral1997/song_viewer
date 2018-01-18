@@ -5,7 +5,7 @@
                   class="home"
                   tag="span"
                   :to="{
-                  name: 'root'
+                  name: 'songs'
                   }"> <!-- Alternative of navigateTo -->
                   Header
             </router-link>
@@ -55,7 +55,7 @@ export default {
       this.$store.dispatch('setUser', null)
       // To redirect to home page
       this.$router.push({
-        name: 'root'
+        name: 'songs'
       })
     }
   }
