@@ -54,13 +54,21 @@ export default {
       songs: null
     }
   },
-  async mounted () { // if not async, mount wont work
+  /* async mounted () { // if not async, mount wont work
     // do request to the backend for all the Songs
     this.songs = (await SongsService.index()).data // It will send data in panel
-  },
+  }, */
   methods: {
     navigateTo (route) {
       this.$router.push(route)
+    }
+  },
+  watch: {
+    '$route.query.search': {
+      immediate: true,
+      async handler (value) {
+        this.songs = (await SongsService.index(value)).data
+      }
     }
   }
 }
