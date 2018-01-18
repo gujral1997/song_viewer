@@ -30,7 +30,7 @@
             </div>
             <v-btn
               class="light-green"
-              @click="navigateTo({name: 'song', params: {songId: song.id}})">
+              :to="({name: 'song', params: {songId: song.id}})">
               View
             </v-btn>
           </v-flex>
