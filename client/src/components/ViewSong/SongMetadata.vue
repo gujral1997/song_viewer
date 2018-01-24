@@ -11,36 +11,38 @@
         <div class="song-genre">
           {{song.genre}}
         </div>
+
         <v-btn
           dark
           class="light-green"
-          :to="{name: 'song-edit',
-          params() {
-            return {
-              songId: song.id
+          :to="{
+            name: 'song-edit',
+            params () {
+              return {
+                songId: song.id
+              }
             }
-          }
-        }">
+          }">
           Edit
         </v-btn>
+
         <v-btn
-          v-if="isUserLoggedIn && !isBookmarked"
+          v-if="isUserLoggedIn && !bookmark"
           dark
           class="light-green"
-          @click="unbookmark"
-          >
-          Bookmark
+          @click="setAsBookmark">
+          Set As Bookmark
         </v-btn>
-        <!-- // not using $store.state.isUserLoggedIn as using mapState  -->
+
         <v-btn
-          v-if="isUserLoggedIn && isBookmarked"
+          v-if="isUserLoggedIn && bookmark"
           dark
           class="light-green"
-          @click="bookmark"
-          >
-          UnBookmark
+          @click="unsetAsBookmark">
+          Unset Bookmark
         </v-btn>
       </v-flex>
+
       <v-flex xs6>
         <img class="album-image" :src="song.albumImageUrl" />
         <br>
@@ -53,13 +55,14 @@
 <script>
 import {mapState} from 'vuex'
 import BookmarksService from '@/services/BookmarksService'
+
 export default {
   props: [
     'song'
   ],
   data () {
     return {
-      isBookmarked: false
+      bookmark: false
     }
   },
   computed: {
@@ -67,38 +70,39 @@ export default {
       'isUserLoggedIn'
     ])
   },
-  async mounted () {
-    if (!this.isUserLoggedIn) {
-      return
-    }
-    try {
-      const bookmark = (await BookmarksService.index({
-        songId: this.song.id,
-        userId: this.$store.state.user.id
-      })).data
-      this.isBookmarked = !!bookmark // now isBookmarked can be used directly
-      // console.log('bookmark', this.isBookmarked)
-    } catch (err) {
-      console.log(err)
+  watch: {
+    async song (value) {
+      if (!this.isUserLoggedIn) {
+        return
+      }
+
+      try {
+        const query = {
+          songId: this.song.id,
+          userId: this.$store.state.user.id
+        }
+        this.bookmark = (await BookmarksService.index(query)).data
+      } catch (err) {
+        console.log(err)
+      }
     }
   },
   methods: {
-    async bookmark () {
+    async setAsBookmark () {
       try {
-        await BookmarksService.post({
+        const bookmark = {
           songId: this.song.id,
           userId: this.$store.state.user.id
-        })
+        }
+        this.bookmark = (await BookmarksService.post(bookmark)).data
       } catch (err) {
         console.log(err)
       }
     },
-    async unbookmark () {
+    async unsetAsBookmark () {
       try {
-        await BookmarksService.delete({
-          songId: this.song.id,
-          userId: this.$store.state.user.id
-        })
+        await BookmarksService.delete(this.bookmark.id)
+        this.bookmark = null
       } catch (err) {
         console.log(err)
       }
@@ -113,17 +117,21 @@ export default {
   height: 330px;
   overflow: hidden;
 }
-.album-image {
-  width :100%;
-  margin:0 auto
-}
+
 .song-title {
   font-size: 30px;
 }
-.song-genre {
+
+.song-artist {
   font-size: 24px;
 }
-.song-artist {
+
+.song-genre {
   font-size: 18px;
+}
+
+.album-image {
+  width: 70%;
+  margin: 0 auto;
 }
 </style>
