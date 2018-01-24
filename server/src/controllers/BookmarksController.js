@@ -1,4 +1,4 @@
-const {Bookmark} = require('../models')
+const {Bookmark, Song, User} = require('../models')
 
 module.exports = {
   async index (req, res) {
@@ -33,8 +33,12 @@ module.exports = {
         })
       }
 
-      const newBookmark = await Bookmark.create(bookmark)
-      res.send(bookmark)
+      const newBookmark = await Bookmark.create(req.body)
+      const song = await Song.findById(songId)
+      const user = await User.findById(userId)
+      await newBookmark.setUser(user)
+      await newBookmark.setSong(song)
+      res.send(newBookmark)
     } catch (err) {
       res.status(500).send({
         error: 'An error has occured, trying to create bookmark'
