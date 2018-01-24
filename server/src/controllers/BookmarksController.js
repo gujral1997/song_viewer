@@ -20,9 +20,20 @@ module.exports = {
   },
   async post (req, res) {
     try {
-      const bookmark = req.body
+      const {songId, userId} = req.body
+      const bookmark = await Bookmark.findOne({
+        where: {
+          SongId: songId,
+          UserId: userId
+        }
+      })
+      if (bookmark) {
+        return res.status(400).send({
+          error: 'already a bookmark'
+        })
+      }
 
-      await Bookmark.create(bookmark)
+      const newBookmark = await Bookmark.create(bookmark)
       res.send(bookmark)
     } catch (err) {
       res.status(500).send({
